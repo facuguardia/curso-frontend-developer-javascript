@@ -5,7 +5,7 @@ const desktopMenu = document.querySelector(".desktop-menu");
 const iconMenu = document.querySelector(".menu");
 const mobileMenu = document.querySelector(".mobile-menu");
 const iconCarrito = document.querySelector(".navbar-shopping-cart");
-const listCarrito = document.querySelector(".product-detail");
+const listCarrito = document.querySelector("#shoppingCartContainer");
 const cardsContainer = document.querySelector(".cards-container");
 
 navEmail.addEventListener("click", toggleDesktopMenu);
