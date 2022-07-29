@@ -6,6 +6,7 @@ const iconMenu = document.querySelector(".menu");
 const mobileMenu = document.querySelector(".mobile-menu");
 const iconCarrito = document.querySelector(".navbar-shopping-cart");
 const listCarrito = document.querySelector(".product-detail");
+const cardsContainer = document.querySelector(".cards-container");
 
 navEmail.addEventListener("click", toggleDesktopMenu);
 iconMenu.addEventListener("click", toggleMobileMenu);
@@ -36,57 +37,67 @@ function toggleListCarrito() {
   listCarrito.classList.toggle("inactive");
 }
 
+//Productos
+
 const producArray = [];
 producArray.push({
     name: "Bike",
     price: 120,
-    img: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    Image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 });
 producArray.push({
     name: "Pantalla",
     price: 120,
-    img: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    Image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 });
 producArray.push({
     name: "Computadora",
     price: 120,
-    img: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    Image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 });
 
-/*<div class="product-card">
-<img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-    alt="">
-<div class="product-info">
-    <div>
-        <p>$120,00</p>
-        <p>Bike</p>
-    </div>
-    <figure>
-        <img src="./icons/bt_add_to_cart.svg" alt="">
-    </figure>
-</div>
-</div>*/
+// Funcion que recorre el array para mostrar los productos
 
-for (produc of producArray) {
-    const producCard = document.createElement("div");
-    producCard.classList.add('product-card');
-
-    const img = document.createElement('img');
-    img.setAttribute('src', produc.img);
-
-    const producInfo = document.createElement("div");
-    producInfo.classList.add('product-info');
-
-    const producInfoDiv = document.createElement("div");
-
-    const producPrice = document.createElement("p");
-    producPrice.innerHTML = '${produc.price}';
-
-    const producName = document.createElement("p");
-    producName.innerHTML = produc.name;
-
-    const producInfoFigure = document.createElement("figure");
-
-    const producImgCart = document.createElement("img");
-    img.setAttribute('src', './icons/bt_add_to_cart.svg');
+function renderProducts(arr) {
+    for (produc of arr) {
+        const producCard = document.createElement("div");
+        producCard.classList.add('product-card');
+    
+        const producImg = document.createElement('img');
+        producImg.setAttribute('src', produc.image);
+    
+        const producInfo = document.createElement("div");
+        producInfo.classList.add('product-info');
+    
+        const producInfoDiv = document.createElement("div");
+    
+        const producPrice = document.createElement("p");
+        producPrice.innerHTML = '$' + produc.price;
+    
+        const producName = document.createElement("p");
+        producName.innerHTML = produc.name;
+    
+        producInfoDiv.appendChild(producPrice);
+        producInfoDiv.appendChild(producName);
+    
+        const producInfoFigure = document.createElement("figure");
+    
+        const producImgCart = document.createElement("img");
+        producImgCart.setAttribute('src', './icons/bt_add_to_cart.svg');
+    
+        producInfoFigure.appendChild(producImgCart);
+    
+        producInfo.appendChild(producInfoDiv);
+    
+        producInfo.appendChild(producInfoFigure);
+    
+        producCard.appendChild(producImg);
+    
+        producCard.appendChild(producInfo);
+    
+        cardsContainer.appendChild(producCard);
+    
+    }
 }
+
+renderProducts(producArray);
